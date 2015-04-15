@@ -7,20 +7,14 @@
 R = require('ramda');
 
 s = (first, last) ->
-  f = (n) ->
-    if   n > last
-      false
-    else
-      [n, n + 1]
+  f = (n) -> if n > last then false else [n, n + 1]
   R.unfold(f, first)
 
 sequence = R.curry(s)
 
 c = R.compose(
-  R.reduce((x, y) ->
-    x + y
-  , 0),
-  R.filter((n) -> return n % 3 == 0 || n % 5 == 0)
+  R.reduce(((x, y) -> x + y), 0),
+  R.filter((n) ->  n % 3 is 0 || n % 5 is 0)
 )
 
 console.log(c(sequence(1, 999)));

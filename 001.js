@@ -18,9 +18,9 @@
 
   sequence = R.curry(s);
 
-  c = R.compose(R.reduce(function(x, y) {
+  c = R.compose(R.reduce((function(x, y) {
     return x + y;
-  }, 0), R.filter(function(n) {
+  }), 0), R.filter(function(n) {
     return n % 3 === 0 || n % 5 === 0;
   }));
 
