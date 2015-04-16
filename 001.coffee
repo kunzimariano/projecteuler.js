@@ -6,15 +6,14 @@
 
 R = require('ramda');
 
-s = (first, last) ->
-  f = (n) -> if n > last then false else [n, n + 1]
-  R.unfold(f, first)
+sequence = (first, last) ->
+  R.unfold(((n) -> if n > last then false else [n, n + 1]), first)
 
-sequence = R.curry(s)
 
-c = R.compose(
+getMultiples = R.compose(
   R.reduce(((x, y) -> x + y), 0),
   R.filter((n) ->  n % 3 is 0 || n % 5 is 0)
 )
 
-console.log(c(sequence(1, 999)));
+multiples = getMultiples(sequence(1, 999))
+console.log(multiples);
