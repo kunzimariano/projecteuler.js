@@ -7,12 +7,12 @@ Find the sum of all the multiples of 3 or 5 below 1000.
 */
 var R = require('ramda');
 
-var sequence = R.curry(function(first, last) {
+var sequence = function(first, last) {
   var f = function(n) {
     return n > last ? false : [n, n + 1];
   };
   return R.unfold(f, first);
-});
+};
 
 
 var c = R.compose(
