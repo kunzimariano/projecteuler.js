@@ -10,8 +10,11 @@ module.exports = function(grunt) {
           src: ['**/*.es6'],
           ext: '.js'
         }]
+      },
+      options: {
+        optional: 'runtime'
       }
-    },    
+    },
     watch: {
       babel: {
         files: ['**/*.es6'],
@@ -23,5 +26,5 @@ module.exports = function(grunt) {
 
   grunt.registerTask('default', ['babel']);
 
-  grunt.loadNpmTasks('grunt-contrib-watch');  
+  grunt.loadNpmTasks('grunt-contrib-watch');
 };

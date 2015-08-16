@@ -5,16 +5,16 @@ If we list all the natural numbers below 10 that are multiples of 3 or 5, we get
 
 Find the sum of all the multiples of 3 or 5 below 1000.
 */
-var R = require('ramda');
+let R = require('ramda');
 
-var sequence = (first, last) => {
+let sequence = (first, last) => {
   return R.unfold(n => n > last ? false : [n, n + 1], first);
 };
 
-var getMultiples = R.compose(
+let getMultiples = R.compose(
   R.reduce((x, y) =>  x + y, 0),
   R.filter(n => n % 3 === 0 || n % 5 === 0)
 );
 
-var multiples = getMultiples(sequence(1, 999));
+let multiples = getMultiples(sequence(1, 999));
 console.log(multiples);
