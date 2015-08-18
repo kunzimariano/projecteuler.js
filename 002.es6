@@ -28,9 +28,9 @@ let takeWhile = function* (iterator, predicate) {
 
 let fibs = takeWhile(fibonacci(), x => x <= 4000000);
 
-let getResult = R.compose(
-  R.reduce((x, y) => x + y, 0),
-  R.filter(n => n % 2 === 0)
+let getResult = R.pipe(
+  R.filter(n => n % 2 === 0),
+  R.reduce((x, y) => x + y, 0)
 );
 
 let res = getResult(Array.from(fibs));

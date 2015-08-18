@@ -15,11 +15,11 @@ var sequence = function sequence(first, last) {
   }, first);
 };
 
-var getMultiples = R.compose(R.reduce(function (x, y) {
-  return x + y;
-}, 0), R.filter(function (n) {
+var getMultiples = R.pipe(R.filter(function (n) {
   return n % 3 === 0 || n % 5 === 0;
-}));
+}), R.reduce(function (x, y) {
+  return x + y;
+}, 0));
 
 var multiples = getMultiples(sequence(1, 999));
 console.log(multiples);

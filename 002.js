@@ -127,11 +127,11 @@ var fibs = takeWhile(fibonacci(), function (x) {
   return x <= 4000000;
 });
 
-var getResult = R.compose(R.reduce(function (x, y) {
-  return x + y;
-}, 0), R.filter(function (n) {
+var getResult = R.pipe(R.filter(function (n) {
   return n % 2 === 0;
-}));
+}), R.reduce(function (x, y) {
+  return x + y;
+}, 0));
 
 var res = getResult(_Array$from(fibs));
 console.log(res);

@@ -11,9 +11,9 @@ let sequence = (first, last) => {
   return R.unfold(n => n > last ? false : [n, n + 1], first);
 };
 
-let getMultiples = R.compose(
-  R.reduce((x, y) =>  x + y, 0),
-  R.filter(n => n % 3 === 0 || n % 5 === 0)
+let getMultiples = R.pipe(
+  R.filter(n => n % 3 === 0 || n % 5 === 0),
+  R.reduce((x, y) =>  x + y, 0)
 );
 
 let multiples = getMultiples(sequence(1, 999));
