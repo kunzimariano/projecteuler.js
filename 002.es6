@@ -5,33 +5,12 @@
 
 let R = require('ramda');
 
-let fibonacci = function* () {
-  let pre = 0, cur = 1;
-  while (true) {
-    let temp = pre;
-    pre = cur;
-    cur += temp;
-    yield cur;
-  }
-}
+let getFibonacci = (o) => { return o.current > 4000000 ? false : [o.current, {current: o.next , next: o.current + o.next }] };
+let fibs = R.unfold(getFibonacci, { current: 0, next: 1 });
 
-let takeWhile = function* (iterator, predicate) {
-  for (let i of iterator)
-  {
-    if(!predicate(i)) {
-      return i;
-    };
-
-    yield i;
-  }
-}
-
-let fibs = takeWhile(fibonacci(), x => x <= 4000000);
-
-let getResult = R.pipe(
+let filterAndSumFibs = R.pipe(
   R.filter(n => n % 2 === 0),
   R.reduce((x, y) => x + y, 0)
 );
 
-let res = getResult(Array.from(fibs));
-console.log(res);
+console.log(filterAndSumFibs(fibs));
