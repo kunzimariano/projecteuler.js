@@ -5,9 +5,9 @@
 
 let R = require('ramda');
 
-let fibonacci = function*() {
+let fibonacci = function* () {
   let pre = 0, cur = 1;
-  for (;;) {
+  while (true) {
     let temp = pre;
     pre = cur;
     cur += temp;
@@ -15,8 +15,23 @@ let fibonacci = function*() {
   }
 }
 
-for (var i of fibonacci())
-{
-  if(i >4000000 ) break;
-  console.log(i);
+let takeWhile = function* (iterator, predicate) {
+  for (let i of iterator)
+  {
+    if(!predicate(i)) {
+      return i;
+    };
+
+    yield i;
+  }
 }
+
+let fibs = takeWhile(fibonacci(), x => x <= 4000000);
+
+let getResult = R.compose(
+  R.reduce((x, y) => x + y, 0),
+  R.filter(n => n % 2 === 0)
+);
+
+let res = getResult(Array.from(fibs));
+console.log(res);
