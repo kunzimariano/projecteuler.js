@@ -7,19 +7,16 @@ Find the sum of all the multiples of 3 or 5 below 1000.
 */
 'use strict';
 
-var R = require('ramda');
+let R = require('ramda');
 
-var sequence = function sequence(first, last) {
-  return R.unfold(function (n) {
-    return n > last ? false : [n, n + 1];
-  }, first);
+let sequence = (first, last) => {
+  return R.unfold(n => n > last ? false : [n, n + 1], first);
 };
 
-var getMultiples = R.pipe(R.filter(function (n) {
-  return n % 3 === 0 || n % 5 === 0;
-}), R.reduce(function (x, y) {
-  return x + y;
-}, 0));
+let getMultiples = R.pipe(
+  R.filter(n => n % 3 === 0 || n % 5 === 0),
+  R.reduce((x, y) =>  x + y, 0)
+);
 
-var multiples = getMultiples(sequence(1, 999));
+let multiples = getMultiples(sequence(1, 999));
 console.log(multiples);

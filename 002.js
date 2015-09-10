@@ -5,17 +5,14 @@
 
 'use strict';
 
-var R = require('ramda');
+let R = require('ramda');
 
-var getFibonacci = function getFibonacci(o) {
-  return o.current > 4000000 ? false : [o.current, { current: o.next, next: o.current + o.next }];
-};
-var fibs = R.unfold(getFibonacci, { current: 0, next: 1 });
+let getFibonacci = (o) => { return o.current > 4000000 ? false : [o.current, {current: o.next , next: o.current + o.next }] };
+let fibs = R.unfold(getFibonacci, { current: 0, next: 1 });
 
-var filterAndSumFibs = R.pipe(R.filter(function (n) {
-  return n % 2 === 0;
-}), R.reduce(function (x, y) {
-  return x + y;
-}, 0));
+let filterAndSumFibs = R.pipe(
+  R.filter(n => n % 2 === 0),
+  R.reduce((x, y) => x + y, 0)
+);
 
 console.log(filterAndSumFibs(fibs));
