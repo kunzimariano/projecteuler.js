@@ -7,8 +7,15 @@
 
 let R = require('ramda');
 
-let getFibonacci = o => o.current > 4000000 ? false : [o.current, {current: o.next , next: o.current + o.next }];
-let fibs = R.unfold(getFibonacci, { current: 0, next: 1 });
+let getFibonacci = o => o.current > 4000000 ? false : [o.current, {
+  current: o.next,
+  next: o.current + o.next
+}];
+
+let fibs = R.unfold(getFibonacci, {
+  current: 0,
+  next: 1
+});
 
 let filterAndSumFibs = R.pipe(
   R.filter(n => n % 2 === 0),
