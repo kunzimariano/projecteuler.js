@@ -8,15 +8,12 @@ Find the sum of all the multiples of 3 or 5 below 1000.
 'use strict';
 
 let R = require('ramda');
-
-let sequence = (first, last) => {
-  return R.unfold(n => n > last ? false : [n, n + 1], first);
-};
+let helpers = require('./mathHelpers.js');
 
 let getMultiples = R.pipe(
   R.filter(n => n % 3 === 0 || n % 5 === 0),
   R.reduce((x, y) =>  x + y, 0)
 );
 
-let multiples = getMultiples(sequence(1, 999));
+let multiples = getMultiples(helpers.sequence(1, 999));
 console.log(multiples);
