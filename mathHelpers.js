@@ -10,8 +10,10 @@ exports.isEven = n => n % 2 === 0;
 
 exports.isOdd = n => n % 2 !== 0;
 
-exports.sequence = (first, last) => {
-  return R.unfold(n => n > last ? false : [n, n + 1], first);
+exports.sequence = function*(first, last) {
+  for (let i = first; i <= last; i++) {
+    yield i;
+  }
 };
 
 exports.isPrime = n => {
