@@ -15,5 +15,5 @@ let getMultiples = R.pipe(
   R.reduce((x, y) =>  x + y, 0)
 );
 
-let multiples = getMultiples(helpers.sequence(1, 999));
+let multiples = getMultiples([...helpers.sequence(1, 999)]);
 console.log(multiples);
