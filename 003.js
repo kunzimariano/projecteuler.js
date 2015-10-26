@@ -7,7 +7,7 @@ let helpers = require('./mathHelpers.js');
 
 const n = 600851475143;
 
-let posiblePrimes = helpers.sequence(2, Math.sqrt(n));
+let posiblePrimes = R.range(2, Math.sqrt(n));
 
 let getLargestPrimeFactor = R.pipe(
   R.filter(x => helpers.isFactor(x, n) && helpers.isPrime(x)),

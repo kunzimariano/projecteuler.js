@@ -3,7 +3,6 @@
 'use strict';
 
 let R = require('ramda');
-let h = require('./mathHelpers');
 
 let isDivisible = function(n) {
   for (let divisor = 20; divisor >= 11; divisor--) {
